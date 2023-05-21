@@ -7,12 +7,6 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
-			System.out.print("Ingrese el primer número: ");
-			double numero1 = scanner.nextDouble();
-
-			System.out.print("Ingrese el segundo número: ");
-			double numero2 = scanner.nextDouble();
-
 			System.out.println("Seleccione la operación:");
 			System.out.println("1. Suma");
 			System.out.println("2. Resta");
@@ -22,6 +16,18 @@ public class Main {
 
 			System.out.print("Opción: ");
 			int opcion = scanner.nextInt();
+
+			if (opcion == 5) {
+				System.out.println("Gracias por usar la Calculadora.");
+				scanner.close();
+			}
+
+			System.out.print("Ingrese el primer número: ");
+			double numero1 = scanner.nextDouble();
+
+			System.out.print("Ingrese el segundo número: ");
+			double numero2 = scanner.nextDouble();
+
 
 			double resultado;
 
@@ -44,10 +50,6 @@ public class Main {
 						System.out.println("El resultado de la división es: " + resultado);
 					} else System.out.println("Error: No se puede dividir entre cero.");
 					break;
-				case 5:
-					System.out.println("Gracias por usar la Calculadora.");
-					scanner.close();
-					System.exit(0);
 				default:
 					System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
 			}
