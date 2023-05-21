@@ -51,6 +51,8 @@ public class Main {
 				default:
 					System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
 			}
+
+			System.out.println();
 		}
 	}
 }
