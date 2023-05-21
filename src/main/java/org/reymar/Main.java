@@ -24,6 +24,33 @@ public class Main {
 			int opcion = scanner.nextInt();
 
 			double resultado;
+
+			switch (opcion) {
+				case 1:
+					resultado = numero1 + numero2;
+					System.out.println("El resultado de la suma es: " + resultado);
+					break;
+				case 2:
+					resultado = numero1 - numero2;
+					System.out.println("El resultado de la resta es: " + resultado);
+					break;
+				case 3:
+					resultado = numero1 * numero2;
+					System.out.println("El resultado de la multiplicación es: " + resultado);
+					break;
+				case 4:
+					if (numero2 != 0) {
+						resultado = numero1 / numero2;
+						System.out.println("El resultado de la división es: " + resultado);
+					} else System.out.println("Error: No se puede dividir entre cero.");
+					break;
+				case 5:
+					System.out.println("Gracias por usar la Calculadora.");
+					scanner.close();
+					System.exit(0);
+				default:
+					System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+			}
 		}
 	}
 }
