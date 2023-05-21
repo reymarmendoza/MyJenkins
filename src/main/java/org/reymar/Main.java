@@ -1,5 +1,6 @@
 package org.reymar;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,20 +15,29 @@ public class Main {
 			System.out.println("4. División");
 			System.out.println("5. Salir");
 
-			System.out.print("Opción: ");
-			int opcion = scanner.nextInt();
-
-			if (opcion == 5) {
-				System.out.println("Gracias por usar la Calculadora.");
-				scanner.close();
+			int opcion = 0;
+			double numero1 = 0;
+			double numero2 = 0;
+			
+			try {
+				System.out.print("Opción: ");
+				opcion = scanner.nextInt();
+	
+				if (opcion == 5) {
+					System.out.println("Gracias por usar la Calculadora.");
+					scanner.close();
+					break;
+				}
+	
+				System.out.print("Ingrese el primer número: ");
+				numero1 = scanner.nextDouble();
+	
+				System.out.print("Ingrese el segundo número: ");
+				numero2 = scanner.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("Error: Entrada inválida. Asegúrate de ingresar números correctamente.");
+				scanner.nextLine();
 			}
-
-			System.out.print("Ingrese el primer número: ");
-			double numero1 = scanner.nextDouble();
-
-			System.out.print("Ingrese el segundo número: ");
-			double numero2 = scanner.nextDouble();
-
 
 			double resultado;
 
