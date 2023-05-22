@@ -10,6 +10,8 @@ import java.util.function.BiConsumer;
 public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		Menu menu = new Menu();
+		Map<BigInteger, BiConsumer<Double, Double>> opcionesMenu = menu.getOpcionesMenu();
 
 		while (true) {
 			System.out.println("Seleccione la operación:");
@@ -23,13 +25,6 @@ public class Main {
 			double numero1 = 0;
 			double numero2 = 0;
 
-			Map<BigInteger, BiConsumer<Double, Double>> opcionesMenu = new HashMap<>();
-
-			opcionesMenu.put(ALLOWED_OPTIONS_SELECTION.VALUE1.getValue(), Main::sumar);
-			opcionesMenu.put(ALLOWED_OPTIONS_SELECTION.VALUE2.getValue(), Main::restar);
-			opcionesMenu.put(ALLOWED_OPTIONS_SELECTION.VALUE3.getValue(), Main::multiplicar);
-			opcionesMenu.put(ALLOWED_OPTIONS_SELECTION.VALUE4.getValue(), Main::dividir);
-			
 			try {
 				System.out.print("Opción: ");
 				opcion = scanner.nextBigInteger();
@@ -49,33 +44,26 @@ public class Main {
 				scanner.nextLine();
 			}
 
-			opcionesMenu
-					.getOrDefault(opcion, Main::noEncontrado)
-					.accept(numero1, numero2);
+			ejecutarSeleccion(opcionesMenu, numero1, numero2, opcion);
 		}
+	}
+
+	public static void ejecutarSeleccion(
+			Map<BigInteger, BiConsumer<Double, Double>> opcionesMenu,
+			double numero1,
+			double numero2,
+			BigInteger opcion
+	) {
+		opcionesMenu
+				.getOrDefault(opcion, Main::noEncontrado)
+				.accept(numero1, numero2);
 	}
 
 	private static BigInteger getBigInteger(int num) {
 		return BigInteger.valueOf(num);
 	}
 
-	private static void sumar(Double a, Double b) {
-		System.out.printf("El resultado de la suma es: %.2f\n\n", a + b);
-	}
-
-	private static void restar(Double a, Double b) {
-		System.out.printf("El resultado de la resta es: %.2f\n\n", a - b);
-	}
-
-	private static void multiplicar(Double a, Double b) {
-		System.out.printf("El resultado de la multiplicacion es: %.2f\n\n", a * b);
-	}
-
-	private static void dividir(Double a, Double b) {
-		System.out.printf("El resultado de la division es: %.2f\n\n", a / b);
-	}
-
-	private static void noEncontrado(Double a, Double b) {
+	public static void noEncontrado(Double a, Double b) {
 		System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
 	}
 }
